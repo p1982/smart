@@ -1,38 +1,48 @@
 import React from 'react'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-} from '@mui/material';
+import { Table, Spin, Typography } from 'antd';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { Post } from '../../types/posts';
-import PostCard from './PostCard';
+
+const { Text } = Typography;
 
 const PostList:React.FC = () => {
   const posts = useSelector<RootState, Post[]>(state => Object.values(state.posts.posts));
-  console.log(posts)
+  const loading = useSelector<RootState, boolean>(state => state.posts.loading);
+  
+  const columns = [
+    {
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id',
+      render: (text: string) => <Text>{text}</Text>,
+    },
+    {
+      title: 'Title',
+      dataIndex: 'title',
+      key: 'title',
+      render: (text: string) => <Text>{text}</Text>,
+    },
+    {
+      title: 'Text',
+      dataIndex: 'text',
+      key: 'text',
+      render: (text: string) => <Text>{text}</Text>,
+    },
+  ];
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell>Title</TableCell>
-            <TableCell>Text</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {posts.map((row:Post) => (
-           <PostCard id={row.id} key={row.id}/>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Spin spinning={loading}>
+      <Table
+        dataSource={posts.map(post => ({
+          key: post.id,
+          id: post.id,
+          title: post.title,
+          text: post.body,
+        }))}
+        columns={columns}
+        pagination={false}
+      />
+    </Spin>
   )
 }
 

@@ -5,7 +5,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      clipPath: {
+        '0': 'rect(0, 0, 0, 0)',
+      },
+    },
   },
   plugins: [],
 }
