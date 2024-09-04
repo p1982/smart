@@ -8,7 +8,7 @@ interface IPostCard {
   id: number;
 }
 const PostCard: React.FC<IPostCard> = ({ id }) => {
-  const { title, body, userId } = useSelector<RootState, Post>(
+  const { title, body } = useSelector<RootState, Post>(
     (state) => state.posts.posts[id]
   );
   return (
@@ -16,7 +16,6 @@ const PostCard: React.FC<IPostCard> = ({ id }) => {
       <TableCell>{id}</TableCell>
       <TableCell>{title}</TableCell>
       <TableCell>{body}</TableCell>
-      {/* <TableCell>{row.job}</TableCell> */}
     </TableRow>
   );
 };
