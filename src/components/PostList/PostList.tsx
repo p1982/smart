@@ -40,9 +40,7 @@ const PostList: React.FC = () => {
           </thead>
           <tbody>
             {posts.length &&
-              posts.map((post) => (
-                <PostCard key={post.id} id={post.id} />
-              ))}
+              posts.map((post) => <PostCard key={post.id} id={post.id} />)}
             {!!posts.length && <NoItems text="No post found" col={3} />}
           </tbody>
         </table>

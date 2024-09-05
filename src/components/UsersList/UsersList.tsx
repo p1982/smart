@@ -5,7 +5,7 @@ import { User } from "../../types/users";
 import { IFilter, setFilter } from "../../store/slices/usersSlice";
 import UserCard from "./UserCard";
 import NoItems from "../NoItems";
-import Input from "../Input/Input";
+import Input from "../Input";
 
 const UsersList: React.FC = () => {
   const dispatch = useDispatch();
@@ -65,10 +65,7 @@ const UsersList: React.FC = () => {
                 <th key={column.key} className="py-2 px-4 border-b">
                   <div className="flex flex-col">
                     <span>{column.label}</span>
-                    <Input
-                      id={column.key}
-                      onChange={handleFilterChange}
-                    />
+                    <Input id={column.key} onChange={handleFilterChange} />
                   </div>
                 </th>
               ))}

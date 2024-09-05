@@ -7,21 +7,21 @@ import PostPage from "../pages/PostPage";
 import UserDetailPage from "../pages/UserDetailPage";
 
 const router = createBrowserRouter([
-    {
-        element: (
-            <>
-                <Header />
-                <Outlet />
-                <Footer />
-            </>
-        ),
-        children: [
-            { path: "/", element: <HomePage /> }, 
-            { path: "/users/:id", element: <UserDetailPage /> }, 
-            { path: "/posts", element: <PostPage /> },       
-            { path: "*", element: <NotFoundPage /> }
-        ]
-    }
-])
+  {
+    element: (
+      <>
+        <Header />
+        <Outlet />
+        <Footer />
+      </>
+    ),
+    children: [
+      { path: "/", element: <HomePage /> },
+      { path: "/users/:id", element: <UserDetailPage /> },
+      { path: "/posts", element: <PostPage /> },
+      { path: "*", element: <NotFoundPage /> },
+    ],
+  },
+]);
 
-export default router
+export default router;

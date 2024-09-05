@@ -1,7 +1,7 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { IFilter } from '../../store/slices/usersSlice';
+import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { IFilter } from "../../store/slices/usersSlice";
 
 type FilterFields = keyof IFilter;
 
@@ -15,26 +15,29 @@ const Input: React.FC<IInput> = ({ id, onChange }) => {
     (state) => state.users.filters
   );
 
-  const config: Record<FilterFields, { placeholder: string; className: string, type?: string }> = {
+  const config: Record<
+    FilterFields,
+    { placeholder: string; className: string; type?: string }
+  > = {
     name: {
       placeholder: "Search Name",
-      className: "mt-2 p-1 border border-gray-300 rounded"
+      className: "mt-2 p-1 border border-gray-300 rounded",
     },
     username: {
       placeholder: "Search Username",
-      className: "mt-2 p-1 border border-gray-300 rounded"
+      className: "mt-2 p-1 border border-gray-300 rounded",
     },
     phone: {
       placeholder: "Search Phone",
-      className: "mt-2 p-1 border border-gray-300 rounded"
+      className: "mt-2 p-1 border border-gray-300 rounded",
     },
     email: {
       placeholder: "Search Email",
-      className: "mt-2 p-1 border border-gray-300 rounded"
-    }
+      className: "mt-2 p-1 border border-gray-300 rounded",
+    },
   };
-  
-  const {placeholder, type="text", className} = config[id]
+
+  const { placeholder, type = "text", className } = config[id];
   return (
     <input
       type={type}

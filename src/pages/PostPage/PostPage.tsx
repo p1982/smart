@@ -10,6 +10,7 @@ const PostPage: React.FC = () => {
   useEffect(() => {
     dispatch(fetchPostAsync());
   }, [dispatch]);
+  
   return (
     <main className="pt-[100px]">
       <div className="max-w-[1200px] mx-auto my-[20px] flex gap-20">

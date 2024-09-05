@@ -1,45 +1,44 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { fetchPostAsync } from './fetchPostSliceReducer';
-import { Post } from '../../types/posts';
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchPostAsync } from "./fetchPostSliceReducer";
+import { Post } from "../../types/posts";
 
-  
 interface PostsState {
-    posts: Record<number, Post>;
-    loading: boolean;
-    error: string | null;
-  }
+  posts: Record<number, Post>;
+  loading: boolean;
+  error: string | null;
+}
 
-  const initialState: PostsState = {
-    posts: {},
-    loading: false,
-    error: null,
-  };
+const initialState: PostsState = {
+  posts: {},
+  loading: false,
+  error: null,
+};
 
-// Создайте слайс
 const postsSlice = createSlice({
-  name: 'posts',
+  name: "posts",
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchPostAsync.pending, (state) => {
-        state.loading = true
-        state.error = null
-    })
+      state.loading = true;
+      state.error = null;
+    });
     builder.addCase(fetchPostAsync.fulfilled, (state, action) => {
-        state.loading = false
-        const posts = action.payload.reduce((acc: Record<number, Post>, cur: Post) => {
-          acc[cur.id] = cur
-            return acc
-        }, {})
-        state.posts = posts
-    })
+      state.loading = false;
+      const posts = action.payload.reduce(
+        (acc: Record<number, Post>, cur: Post) => {
+          acc[cur.id] = cur;
+          return acc;
+        },
+        {}
+      );
+      state.posts = posts;
+    });
     builder.addCase(fetchPostAsync.rejected, (state, action) => {
-        state.loading = false
-        state.error = action.payload as string ?? 'Failed to fetch posts';
-    })
-  }
+      state.loading = false;
+      state.error = (action.payload as string) ?? "Failed to fetch posts";
+    });
+  },
 });
 
-//export const {  } = postsSlice.actions;
 export default postsSlice.reducer;

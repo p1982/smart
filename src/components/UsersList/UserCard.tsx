@@ -19,7 +19,9 @@ const UserCard: React.FC<IUserCard> = ({ id }) => {
       <td className="py-2 px-4 border-b">{username}</td>
       <td className="py-2 px-4 border-b">{phone}</td>
       <td className="py-2 px-4 border-b">{email}</td>
-      <td className="py-2 px-4 border-b"><Link to={`/users/${id}`}>Show More</Link></td>
+      <td className="py-2 px-4 border-b">
+        <Link to={`/users/${id}`}>Show More</Link>
+      </td>
     </tr>
   );
 };
