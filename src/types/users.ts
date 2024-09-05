@@ -3,7 +3,7 @@ interface IGeo {
     lng: string
 }
 
-interface IAdress {
+interface Iaddress {
     city: string,
     street: string,   
     geo: IGeo,
@@ -25,5 +25,5 @@ export interface User {
     phone: string,
     website: string,
     company: ICompany,
-    adress: IAdress,
+    address: Iaddress,
   }

@@ -1,9 +1,9 @@
 import React from "react";
-import { RootState } from "../../store/store";
-
 import { useSelector } from "react-redux";
-import { User } from "../../types/users";
 import { Link } from "react-router-dom";
+import { RootState } from "../../store/store";
+import { User } from "../../types/users";
+
 interface IUserCard {
   id: number;
 }

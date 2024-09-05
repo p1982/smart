@@ -8,7 +8,18 @@ export const fetchUsersAsync = createAsyncThunk<User[], void, { rejectValue: str
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(`${API_URL}/users`);
-      console.log(response.data, 5655)
+      return response.data;
+    } catch (e: any) {
+      return rejectWithValue(e.response?.data?.message || 'Failed to fetch users');
+    }
+  }
+);
+
+export const fetchUsersByIdAsync = createAsyncThunk<User, string, { rejectValue: string }>(
+  'users/fetchByIdUsers',
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${API_URL}/users/${id}`);
       return response.data;
     } catch (e: any) {
       return rejectWithValue(e.response?.data?.message || 'Failed to fetch users');

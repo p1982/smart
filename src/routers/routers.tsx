@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import HomePage from "../pages/HomePage";
 import NotFoundPage from "../pages/NotFoundPage";
 import PostPage from "../pages/PostPage";
+import UserDetailPage from "../pages/UserDetailPage";
 
 const router = createBrowserRouter([
     {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
         ),
         children: [
             { path: "/", element: <HomePage /> }, 
+            { path: "/users/:id", element: <UserDetailPage /> }, 
             { path: "/posts", element: <PostPage /> },       
             { path: "*", element: <NotFoundPage /> }
         ]

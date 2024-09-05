@@ -37,11 +37,11 @@ const UsersList: React.FC = () => {
     );
   });
 
-  const columns = [
-    { key: "name", label: "Name", placeholder: "Search Name" },
-    { key: "username", label: "Username", placeholder: "Search Username" },
-    { key: "phone", label: "Phone", placeholder: "Search Phone" },
-    { key: "email", label: "Email", placeholder: "Search Email" },
+  const columns: Array<{ key: FilterFields; label: string }> = [
+    { key: "name", label: "Name" },
+    { key: "username", label: "Username" },
+    { key: "phone", label: "Phone" },
+    { key: "email", label: "Email" },
   ];
 
   if (loading) {
@@ -66,9 +66,7 @@ const UsersList: React.FC = () => {
                   <div className="flex flex-col">
                     <span>{column.label}</span>
                     <Input
-                      name={column.key}
-                      placeholder={column.placeholder}
-                      value={filters[column.key as FilterFields]}
+                      id={column.key}
                       onChange={handleFilterChange}
                     />
                   </div>

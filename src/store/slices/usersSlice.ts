@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../../types/users";
-import { fetchUsersAsync } from "./fetchUsersSliceReducer";
+import { fetchUsersAsync, fetchUsersByIdAsync } from "./fetchUsersSliceReducer";
 
 export interface IFilter {
   name: string;
@@ -14,10 +14,12 @@ interface UsersState {
   loading: boolean;
   error: string | null;
   filters: IFilter;
+  user: User | null;
 }
 
 const initialState: UsersState = {
   users: {},
+  user: null,
   loading: false,
   error: null,
   filters: {
@@ -59,6 +61,19 @@ const usersSlice = createSlice({
       state.users = users;
     });
     builder.addCase(fetchUsersAsync.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload ?? "Failed to fetch posts";
+    });
+
+    builder.addCase(fetchUsersByIdAsync.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(fetchUsersByIdAsync.fulfilled, (state, action) => {
+      state.loading = false;
+      state.user = action.payload;
+    });
+    builder.addCase(fetchUsersByIdAsync.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload ?? "Failed to fetch posts";
     });
