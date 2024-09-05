@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { User } from "../../types/users";
@@ -6,7 +7,8 @@ import { User } from "../../types/users";
 const UserDetail: React.FC = () => {
   const user = useSelector<RootState, User | null>((state) => state.users.user);
   return (
-    <div>
+    <div className="flex justify-center items-center flex-col">
+      <Link to="/">Go back</Link>
       <h1 className="text-3xl font-bold mb-4">{user?.name}</h1>
       <p className="text-gray-700 mb-2">
         <strong>Username:</strong> {user?.username}
